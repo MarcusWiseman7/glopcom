@@ -6,6 +6,19 @@ export default defineNuxtConfig({
 
     modules: ['@nuxtjs/seo', '@nuxt/eslint', '@nuxtjs/i18n', 'vuetify-nuxt-module'],
 
+    robots: {
+        groups: [
+            {
+                disallow: [],
+            },
+        ],
+    },
+
+    i18n: {
+        locales: [{ code: 'en', language: 'en-US' }],
+        vueI18n: './i18n.config.ts',
+    },
+
     vuetify: {
         vuetifyOptions: {
             theme: {
