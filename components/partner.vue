@@ -1,5 +1,5 @@
 <template>
-    <v-card class="partner" :href="partner.url" :ripple="false">
+    <v-card class="partner" :href="partner.url" target="_blank" :ripple="false">
         <SanityImage
             v-if="partner.logo?.media?.asset?._ref"
             :asset-id="partner.logo.media.asset._ref"
