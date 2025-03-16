@@ -6,7 +6,6 @@
 .logo {
     width: 100px;
     height: 100px;
-    background-color: pink;
     display: flex;
     justify-content: center;
     align-items: center;

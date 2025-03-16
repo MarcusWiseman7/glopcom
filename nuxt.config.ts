@@ -23,8 +23,20 @@ export default defineNuxtConfig({
 
     vuetify: {
         vuetifyOptions: {
+            defaults: {
+                global: {
+                    ripple: false,
+                },
+            },
             theme: {
-                // defaultTheme: 'dark',
+                defaultTheme: 'light',
+                themes: {
+                    light: {
+                        colors: {
+                            primary: '#009688',
+                        },
+                    },
+                },
             },
         },
     },
@@ -41,6 +53,16 @@ export default defineNuxtConfig({
             title: 'Glopcom',
             meta: [{ name: 'description', content: 'Glopcom' }],
             link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+        },
+    },
+
+    vite: {
+        css: {
+            preprocessorOptions: {
+                scss: {
+                    additionalData: '@use "@/assets/styles/functions.scss";',
+                },
+            },
         },
     },
 });

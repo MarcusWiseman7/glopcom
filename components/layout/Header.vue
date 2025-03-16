@@ -1,15 +1,19 @@
 <template>
     <v-app-bar :height="100" class="header">
-        <template v-if="mobile" v-slot:prepend>
+        <template v-if="mobile" #prepend>
             <v-app-bar-nav-icon @click="drawer = !drawer" />
         </template>
-        <NuxtLink :to="{ path: localePath('index') }">
-            <div v-if="logo?.media?.asset?._ref" class="logo">
-                <SanityImage :asset-id="logo.media.asset._ref" :alt="logo.alt" auto="format" />
-            </div>
+        <NuxtLink :to="{ path: localePath('index') }" class="header__logo__wrapper">
+            <SanityImage
+                v-if="logo?.media?.asset?._ref"
+                class="header__logo"
+                :asset-id="logo.media.asset._ref"
+                :alt="logo.alt"
+                auto="format"
+            />
             <PlaceholdersLogo v-else />
         </NuxtLink>
-        <template v-if="!mobile" v-slot:append>
+        <template v-if="!mobile" #append>
             <LayoutNav />
         </template>
     </v-app-bar>
@@ -42,22 +46,28 @@ onBeforeUnmount(() => {
 </script>
 
 <style lang="scss" scoped>
-.logo {
-    width: 100px;
-    height: 100px;
-
-    img {
-        width: 100px;
-        height: 100px;
-        object-fit: cover;
-    }
-}
-
 .header {
     @media (min-width: 1200px) {
         max-width: 1200px;
         margin: 0 auto;
         left: calc(50% - 600px) !important;
+    }
+
+    &__logo {
+        width: auto;
+        height: 60px;
+        object-fit: cover;
+        transform: translate(calc(50% - 52px), 0);
+
+        @include functions.device(tablet) {
+            height: 80px;
+            margin-left: 10px;
+            transform: translate(0, 0);
+        }
+
+        &__wrapper {
+            flex: 1;
+        }
     }
 }
 </style>

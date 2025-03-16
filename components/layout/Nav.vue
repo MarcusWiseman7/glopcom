@@ -22,7 +22,7 @@ const items = [
 .nav-item {
     a {
         text-decoration: none;
-        color: var(--content-primary);
+        color: rgba(var(--v-theme-on-background), var(--v-high-emphasis-opacity));
     }
 }
 </style>

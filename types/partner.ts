@@ -3,7 +3,7 @@ import type { SeoImage } from './sanity';
 export type Partner = {
     _id: string;
     name: string;
-    description: string;
-    image: SeoImage;
+    logo: SeoImage;
     url: string;
+    points: string[];
 };
