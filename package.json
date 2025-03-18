@@ -1,7 +1,9 @@
 {
-    "name": "nuxt-app",
+    "name": "glopcom",
     "private": true,
     "type": "module",
+    "version": "0.0.2",
+    "author": "marcus wiseman <md.wiseman@hotmail.com>",
     "scripts": {
         "build": "nuxt build",
         "dev": "nuxt dev",

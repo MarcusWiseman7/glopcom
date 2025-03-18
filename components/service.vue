@@ -2,18 +2,21 @@
     <v-card
         :class="['service', { 'service--expanded': mobile && overlay }]"
         flat
+        tile
         @mouseenter="overlay = true"
         @mouseleave="overlay = false"
         @touchstart="overlay = !overlay"
     >
-        <v-card-title v-if="service.title" class="service__title">{{ service.title }}</v-card-title>
+        <v-card-title v-if="service.title" :class="['service__title', { 'service__title--active': overlay }]">{{
+            service.title
+        }}</v-card-title>
         <div :class="['overlay', { 'overlay--active': overlay }]">
             <v-list :class="{ active: overlay }">
-                <v-list-item v-for="point in service.points" :key="point">
+                <v-list-item v-for="point in service.points" :key="point" variant="text">
                     <template #prepend>
                         <img src="/assets/icons/bolt.svg" alt="bolt" />
                     </template>
-                    <v-list-item-title>{{ point }}</v-list-item-title>
+                    <v-list-item-title class="service__point">{{ point }}</v-list-item-title>
                 </v-list-item>
             </v-list>
         </div>
@@ -29,7 +32,7 @@ defineProps<{
 
 const { mobile } = useDisplay();
 
-const overlay = ref(false);
+const overlay = ref(true);
 </script>
 
 <style lang="scss" scoped>
@@ -55,7 +58,14 @@ const overlay = ref(false);
         font-size: 1.65rem;
         font-weight: 700;
         white-space: pre-line;
-        // word-spacing: 100vw;
+
+        &--active {
+            opacity: 0;
+        }
+    }
+
+    &__point {
+        white-space: pre-wrap;
     }
 }
 
@@ -65,9 +75,9 @@ const overlay = ref(false);
     left: 0;
     width: 100%;
     height: 100%;
+    padding: 1rem;
     display: flex;
-    align-items: flex-end;
-    padding: 2rem;
+    align-items: center;
     z-index: 1;
     opacity: 0;
     background-color: rgba(0, 0, 0, 0.1);
@@ -80,8 +90,8 @@ const overlay = ref(false);
     :deep(.v-list) {
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
-        gap: 1.25rem;
+        align-items: space-between;
+        gap: 0.25rem;
         opacity: 0;
         transition: opacity 0.6s ease-in-out;
         background-color: transparent;
