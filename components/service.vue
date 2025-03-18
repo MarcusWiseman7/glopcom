@@ -32,7 +32,7 @@ defineProps<{
 
 const { mobile } = useDisplay();
 
-const overlay = ref(true);
+const overlay = ref(false);
 </script>
 
 <style lang="scss" scoped>
