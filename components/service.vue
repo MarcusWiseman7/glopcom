@@ -58,6 +58,7 @@ const overlay = ref(false);
         font-size: 1.65rem;
         font-weight: 700;
         white-space: pre-line;
+        transition: opacity 0.4s ease-in-out;
 
         &--active {
             opacity: 0;
@@ -81,7 +82,7 @@ const overlay = ref(false);
     z-index: 1;
     opacity: 0;
     background-color: rgba(0, 0, 0, 0.1);
-    transition: opacity 0.2s ease-in-out;
+    transition: opacity 0.4s ease-in-out;
 
     &--active {
         opacity: 1;

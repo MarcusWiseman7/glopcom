@@ -18,8 +18,6 @@ defineProps<{ partners: Partner[] }>();
 <style lang="scss" scoped>
 .partners {
     display: flex;
-    // background-color: rgb(var(--v-theme-primary));
-    // color: #fff;
     flex-direction: column;
 
     @include functions.device(tablet) {
@@ -42,13 +40,11 @@ defineProps<{ partners: Partner[] }>();
     &__list {
         width: 100%;
         display: flex;
-        flex-direction: column;
         flex-wrap: wrap;
         gap: 1.5rem;
         padding: 0 1rem;
 
         @include functions.device(tablet) {
-            flex-direction: row;
             padding: 0;
         }
     }
