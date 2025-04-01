@@ -1,5 +1,5 @@
 <template>
-    <v-app class="layout">
+    <v-app>
         <LayoutHeader />
         <v-main class="main">
             <slot />
@@ -10,8 +10,8 @@
 <script setup lang="ts"></script>
 
 <style lang="scss" scoped>
-.layout {
-    max-width: 1200px;
+.main {
+    max-width: 1000px;
     margin: 0 auto;
     color: rgb(var(--v-theme-text));
 }

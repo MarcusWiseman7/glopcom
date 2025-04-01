@@ -1,8 +1,6 @@
 <template>
     <section id="services" class="services">
-        <div class="services__title">
-            <h2>{{ $t('index.section_title.services') }}</h2>
-        </div>
+        <h2 class="services__title">{{ $t('index.section_title.services') }}</h2>
         <div class="services__list">
             <Service v-for="service in services" :key="service._id" :service="service" />
         </div>
@@ -17,35 +15,30 @@ defineProps<{ services: Service[] }>();
 
 <style lang="scss" scoped>
 .services {
-    display: flex;
-    // background-color: rgb(var(--v-theme-primary));
-    // color: #fff;
-    flex-direction: column;
-
-    @include functions.device(tablet) {
-        flex-direction: row;
-    }
-
     &__title {
-        display: flex;
-        align-items: center;
         font-size: 2.25rem;
+        line-height: 33px;
+        font-weight: 700;
         padding: 0 1rem;
 
         @include functions.device(tablet) {
-            padding: 0;
-            justify-content: center;
-            width: 40%;
+            font-size: 4rem;
+            line-height: 66px;
+            letter-spacing: 0.5px;
+            font-weight: 700;
         }
     }
 
     &__list {
+        margin-top: 2rem;
         width: 100%;
         display: flex;
         flex-direction: column;
+        gap: 0.25rem;
 
         @include functions.device(tablet) {
             flex-direction: row;
+            gap: 1rem;
         }
     }
 }

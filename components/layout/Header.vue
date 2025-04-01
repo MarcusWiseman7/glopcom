@@ -1,23 +1,23 @@
 <template>
-    <v-app-bar :height="100" class="header">
-        <template v-if="mobile" #prepend>
-            <v-app-bar-nav-icon @click="drawer = !drawer" />
+    <v-app-bar :height="100" color="black" class="header">
+        <template #default>
+            <NuxtLink :to="{ path: localePath('index') }" class="header__logo__wrapper">
+                <SanityImage
+                    v-if="logo?.media?.asset?._ref"
+                    class="header__logo"
+                    :asset-id="logo.media.asset._ref"
+                    :alt="logo.alt"
+                    auto="format"
+                />
+                <PlaceholdersLogo v-else />
+            </NuxtLink>
         </template>
-        <NuxtLink :to="{ path: localePath('index') }" class="header__logo__wrapper">
-            <SanityImage
-                v-if="logo?.media?.asset?._ref"
-                class="header__logo"
-                :asset-id="logo.media.asset._ref"
-                :alt="logo.alt"
-                auto="format"
-            />
-            <PlaceholdersLogo v-else />
-        </NuxtLink>
-        <template v-if="!mobile" #append>
-            <LayoutNav />
+        <template #append>
+            <LayoutNav v-if="!mobile" />
+            <v-app-bar-nav-icon v-else @click="drawer = !drawer" />
         </template>
     </v-app-bar>
-    <v-navigation-drawer v-if="mobile" v-model="drawer">
+    <v-navigation-drawer v-if="mobile" v-model="drawer" color="black">
         <LayoutNav />
     </v-navigation-drawer>
 </template>
@@ -47,12 +47,6 @@ onBeforeUnmount(() => {
 
 <style lang="scss" scoped>
 .header {
-    @media (min-width: 1200px) {
-        max-width: 1200px;
-        margin: 0 auto;
-        left: calc(50% - 600px) !important;
-    }
-
     &__logo {
         width: auto;
         height: 60px;
@@ -68,6 +62,11 @@ onBeforeUnmount(() => {
         &__wrapper {
             flex: 1;
         }
+    }
+
+    :deep(.v-toolbar__content) {
+        max-width: 1000px;
+        margin: 0 auto;
     }
 }
 </style>

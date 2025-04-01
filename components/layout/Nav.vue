@@ -1,9 +1,9 @@
 <template>
-    <v-list-item v-for="item in items" :key="item.id" class="nav-item">
-        <NuxtLink :to="item.to">
+    <ul class="nav">
+        <NuxtLink v-for="item in items" :key="item.id" :to="item.to" class="nav__item">
             {{ item.title }}
         </NuxtLink>
-    </v-list-item>
+    </ul>
 </template>
 
 <script setup lang="ts">
@@ -19,10 +19,29 @@ const items = [
 </script>
 
 <style lang="scss" scoped>
-.nav-item {
-    a {
+.nav {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    height: 100%;
+
+    @include functions.device(tablet) {
+        flex-direction: row;
+        gap: 2rem;
+        padding: 0 2rem;
+    }
+
+    &__item {
         text-decoration: none;
-        color: rgba(var(--v-theme-on-background), var(--v-high-emphasis-opacity));
+        color: #fff;
+        white-space: pre-wrap;
+
+        @include functions.device(tablet) {
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
     }
 }
 </style>

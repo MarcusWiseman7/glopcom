@@ -7,18 +7,18 @@
         @mouseleave="overlay = false"
         @touchstart="overlay = !overlay"
     >
-        <v-card-title v-if="service.title" :class="['service__title', { 'service__title--active': overlay }]">{{
-            service.title
-        }}</v-card-title>
+        <v-card-title v-if="service.title" class="service__title">
+            {{ service.title }}
+        </v-card-title>
+        <template #image>
+            <SanityImage :asset-id="service.image.media.asset._ref" :alt="service.image.alt" auto="format" />
+        </template>
         <div :class="['overlay', { 'overlay--active': overlay }]">
-            <v-list :class="{ active: overlay }">
-                <v-list-item v-for="point in service.points" :key="point" variant="text">
-                    <template #prepend>
-                        <img src="/assets/icons/bolt.svg" alt="bolt" />
-                    </template>
-                    <v-list-item-title class="service__point">{{ point }}</v-list-item-title>
-                </v-list-item>
-            </v-list>
+            <ul>
+                <li v-for="(point, index) in service.points" :key="`point-${index}`">
+                    {{ point }}
+                </li>
+            </ul>
         </div>
     </v-card>
 </template>
@@ -39,34 +39,36 @@ const overlay = ref(false);
 .service {
     position: relative;
     padding: 1rem;
-    height: 500px;
-    background-color: gray;
     color: #fff;
     height: 120px;
     transition: height 0.3s ease-in-out;
+    text-shadow: 1px 1px 2px #000;
 
     &--expanded {
         height: 400px;
     }
 
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
     @include functions.device(tablet) {
         flex: 1;
-        height: 500px;
+        height: 600px;
+        width: 100%;
     }
 
     &__title {
-        font-size: 1.65rem;
-        font-weight: 700;
         white-space: pre-line;
-        transition: opacity 0.4s ease-in-out;
+        font-weight: 700;
+        font-size: 1.5rem;
 
-        &--active {
-            opacity: 0;
+        @include functions.device(tablet) {
+            font-size: 2rem;
+            line-height: 22px;
         }
-    }
-
-    &__point {
-        white-space: pre-wrap;
     }
 }
 
@@ -78,7 +80,7 @@ const overlay = ref(false);
     height: 100%;
     padding: 1rem;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     z-index: 1;
     opacity: 0;
     background-color: rgba(0, 0, 0, 0.1);
@@ -88,23 +90,25 @@ const overlay = ref(false);
         opacity: 1;
     }
 
-    :deep(.v-list) {
+    ul {
         display: flex;
         flex-direction: column;
-        align-items: space-between;
-        gap: 0.25rem;
-        opacity: 0;
-        transition: opacity 0.6s ease-in-out;
+        gap: 1.25rem;
         background-color: transparent;
         color: #fff;
+        padding: 0 2rem 1rem;
 
-        &.active {
-            opacity: 1;
+        @include functions.device(tablet) {
+            padding: 0 2.5rem 1rem;
         }
     }
 
-    :deep(.v-list-item) {
-        gap: 0.5rem;
+    li {
+        white-space: pre-wrap;
+        font-size: 16px;
+        line-height: 22px;
+        letter-spacing: 0.5px;
+        font-weight: 400;
     }
 }
 </style>

@@ -17,6 +17,8 @@ export default defineNuxtConfig({
             { code: 'en', language: 'en-US' },
             { code: 'de', language: 'de-DE' },
         ],
+        strategy: 'prefix_except_default',
+        defaultLocale: 'en',
         baseUrl: import.meta.dev ? 'http://localhost:3000' : 'https://glopcom.com',
         vueI18n: './i18n.config.ts',
     },
