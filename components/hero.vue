@@ -34,32 +34,32 @@ defineProps<{ hero: Hero }>();
         flex-direction: column;
         justify-content: center;
         padding: 0 1rem;
+        text-shadow: 1px 1px 2px #000;
 
         @include functions.device(tablet) {
             padding: 0 2rem;
         }
 
         &__title {
-            font-size: 1.5rem;
+            @include typography.font(headlines, h6);
+
             line-height: 2rem;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            text-shadow: 1px 1px 2px #000;
 
             @include functions.device(tablet) {
-                font-size: 3rem;
+                @include typography.font(headlines, h3);
+
                 line-height: 4rem;
             }
         }
 
         &__subtitle {
-            font-size: 0.875rem;
+            @include typography.font(body, xs);
+
             line-height: 2rem;
-            font-weight: 400;
-            text-shadow: 1px 1px 2px #000;
 
             @include functions.device(tablet) {
-                font-size: 20px;
+                @include typography.font(body, l);
+
                 line-height: 4rem;
             }
         }

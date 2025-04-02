@@ -32,7 +32,7 @@ defineProps<{
 
 const { mobile } = useDisplay();
 
-const overlay = ref(false);
+const overlay = ref(true);
 </script>
 
 <style lang="scss" scoped>
@@ -62,12 +62,11 @@ const overlay = ref(false);
 
     &__title {
         white-space: pre-line;
-        font-weight: 700;
-        font-size: 1.5rem;
+
+        @include typography.font(headlines, h6);
 
         @include functions.device(tablet) {
-            font-size: 2rem;
-            line-height: 22px;
+            @include typography.font(headlines, h5);
         }
     }
 }
@@ -93,7 +92,7 @@ const overlay = ref(false);
     ul {
         display: flex;
         flex-direction: column;
-        gap: 1.25rem;
+        gap: 0.75rem;
         background-color: transparent;
         color: #fff;
         padding: 0 2rem 1rem;
@@ -105,10 +104,8 @@ const overlay = ref(false);
 
     li {
         white-space: pre-wrap;
-        font-size: 16px;
-        line-height: 22px;
-        letter-spacing: 0.5px;
-        font-weight: 400;
+
+        @include typography.font(body, s);
     }
 }
 </style>

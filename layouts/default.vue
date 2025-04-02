@@ -4,6 +4,7 @@
         <v-main class="main">
             <slot />
         </v-main>
+        <LayoutFooter />
     </v-app>
 </template>
 

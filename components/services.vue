@@ -16,16 +16,12 @@ defineProps<{ services: Service[] }>();
 <style lang="scss" scoped>
 .services {
     &__title {
-        font-size: 2.25rem;
-        line-height: 33px;
-        font-weight: 700;
         padding: 0 1rem;
 
+        @include typography.font(headlines, h4);
+
         @include functions.device(tablet) {
-            font-size: 4rem;
-            line-height: 66px;
-            letter-spacing: 0.5px;
-            font-weight: 700;
+            @include typography.font(headlines, h2);
         }
     }
 

@@ -18,9 +18,6 @@
         </div>
         <Services :services="services" />
         <Partners :partners="partners" />
-        <section id="contact" class="section">
-            <h2>{{ $t('index.section_title.contact') }}</h2>
-        </section>
     </div>
 </template>
 
@@ -59,33 +56,31 @@ const partners = computed<Partner[]>(() => data.value?.partners || []);
     display: flex;
     flex-direction: column;
     gap: 80px;
-    margin-top: 40px;
+    margin: 4rem 0;
 }
 
 .about {
     &__title {
-        font-size: 2.25rem;
-        line-height: 33px;
-        font-weight: 700;
         padding: 0 1rem;
 
+        @include typography.font(headlines, h4);
+
         @include functions.device(tablet) {
-            font-size: 4rem;
-            line-height: 66px;
-            letter-spacing: 0.5px;
-            font-weight: 700;
+            @include typography.font(headlines, h2);
         }
     }
 
     &__text {
-        font-size: 20px;
-        line-height: 30px;
-        letter-spacing: 0.5px;
-        font-weight: 400;
         padding: 30px 20px;
         display: flex;
         flex-direction: column;
         gap: 1rem;
+
+        @include typography.font(body, m);
+
+        @include functions.device(tablet) {
+            @include typography.font(body, l);
+        }
     }
 }
 </style>
