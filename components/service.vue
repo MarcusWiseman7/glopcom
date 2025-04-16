@@ -42,7 +42,7 @@ const overlay = ref(false);
     color: #fff;
     height: 120px;
     transition: height 0.3s ease-in-out;
-    text-shadow: 1px 1px 2px #000;
+    text-shadow: var(--text-shadow-black);
 
     &--expanded {
         height: 400px;

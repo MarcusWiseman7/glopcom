@@ -1,24 +1,30 @@
 <template>
     <v-footer id="contact" color="black">
+        <div class="footer__logo">
+            <img src="~/assets/icons/logo_icon.svg" alt="logo icon" />
+        </div>
         <div class="footer__content">
             <h2 class="footer__title">{{ $t('index.section_title.contact') }}</h2>
-            <div class="footer__text">
-                <p>GLOPCOM GmbH</p>
-                <p>VAT number: xxxxxxxxxxxx</p>
-            </div>
             <div class="footer__text footer__contact">
-                <div>
-                    <p>Address: Wylstrasse 11B, 6052 Hergiswil, Switzerland</p>
-                    <a href="mailto:peter.rajec@glopcom.com">
-                        <p>Email: peter.rajec@glopcom.com</p>
-                    </a>
-                    <a href="tel:+41797649020">
-                        <p>Phone: +41 79 764 9020</p>
-                    </a>
+                <div class="footer__contact__info">
+                    <div class="footer__text">
+                        <p>GLOPCOM GmbH</p>
+                        <p>Wylstrasse 11B, 6052 Hergiswil</p>
+                        <p>Switzerland</p>
+                    </div>
+                    <div>
+                        <a href="mailto:peter.rajec@glopcom.com">
+                            <p>Email: peter.rajec@glopcom.com</p>
+                        </a>
+                        <a href="tel:+41797649020">
+                            <p>Phone: +41 79 764 9020</p>
+                        </a>
+                        <p>VAT number: CHE-248.093.923 MWST</p>
+                    </div>
                 </div>
                 <div class="footer__social">
                     <p>Follow us</p>
-                    <v-icon icon="mdi-linkedin" size="x-large" />
+                    <img src="~/assets/icons/linkedin.svg" alt="linked in" />
                 </div>
             </div>
         </div>
@@ -27,6 +33,22 @@
 
 <style lang="scss" scoped>
 .footer {
+    &__logo {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+
+        img {
+            height: 100%;
+            width: auto;
+            max-width: 100%;
+        }
+    }
+
     &__content {
         width: 100%;
         max-width: 1000px;
@@ -35,6 +57,8 @@
         flex-direction: column;
         gap: 2rem;
         padding: 2rem 0;
+        z-index: 1;
+        text-shadow: var(--text-shadow-black);
 
         @include functions.device(tablet) {
             padding: 3rem 1rem;
@@ -74,6 +98,12 @@
         a {
             text-decoration: none;
             color: #fff;
+        }
+
+        &__info {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
         }
     }
 

@@ -34,7 +34,7 @@ defineProps<{ hero: Hero }>();
         flex-direction: column;
         justify-content: center;
         padding: 0 1rem;
-        text-shadow: 1px 1px 2px #000;
+        text-shadow: var(--text-shadow-black);
 
         @include functions.device(tablet) {
             padding: 0 2rem;

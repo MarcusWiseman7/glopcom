@@ -1,21 +1,29 @@
 <template>
     <ul class="nav">
-        <NuxtLink v-for="item in items" :key="item.id" :to="item.to" class="nav__item">
+        <div v-for="(item, index) in items" :key="`nav-item-${index}`" class="nav__item" @click="navClick(item.id)">
             {{ item.title }}
-        </NuxtLink>
+        </div>
     </ul>
 </template>
 
 <script setup lang="ts">
-const localePath = useLocalePath();
 const { t } = useI18n();
 
 const items = [
-    { id: 1, title: t('nav.about_us'), type: 'link', to: { path: localePath('about-us') } },
-    { id: 2, title: t('nav.product'), type: 'link', to: { path: localePath('product') } },
-    { id: 3, title: t('nav.partners'), type: 'link', to: { path: localePath('index'), hash: '#partners' } },
-    { id: 4, title: t('nav.contact'), type: 'link', to: { path: localePath('index'), hash: '#contact' } },
+    { title: t('nav.about_us'), id: 'about' },
+    { title: t('nav.services'), id: 'services' },
+    { title: t('nav.product'), id: 'products' },
+    { title: t('nav.partners'), id: 'partners' },
+    { title: t('nav.contact'), id: 'contact' },
 ];
+
+const navClick = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+        const y = el.getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({ top: y - 120, behavior: 'smooth' });
+    }
+};
 </script>
 
 <style lang="scss" scoped>
@@ -36,6 +44,7 @@ const items = [
         text-decoration: none;
         color: #fff;
         white-space: pre-wrap;
+        cursor: pointer;
 
         @include functions.device(tablet) {
             height: 100%;

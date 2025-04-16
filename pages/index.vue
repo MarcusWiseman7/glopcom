@@ -2,22 +2,10 @@
     <Hero v-if="hero?.assetId" :hero="hero" />
     <PlaceholdersBanner v-else />
     <div class="content">
-        <div class="about">
-            <h2 class="about__title">About us</h2>
-            <div class="about__text">
-                <p>
-                    At GLOPCOM - Global Optical Components, we believe in building long-term, trust-based partnerships
-                    that drive sustainable business success in the optical communication, sensing, semiconductor, and
-                    automotive industries.
-                </p>
-                <p>
-                    Our mission is to connect technology with market needs, helping companies optimize their sales
-                    strategies, expand their global presence, and access high-quality optical components.
-                </p>
-            </div>
-        </div>
-        <Services :services="services" />
-        <Partners :partners="partners" />
+        <About id="about" />
+        <Services id="services" :services="services" />
+        <Partners id="partners" :partners="partners" />
+        <Products id="products" :products="products" />
     </div>
 </template>
 
@@ -49,6 +37,32 @@ const hero = computed<Hero | null>(() => {
 });
 const services = computed<Service[]>(() => data.value?.services || []);
 const partners = computed<Partner[]>(() => data.value?.partners || []);
+const products = [
+    {
+        title: 'Telecom & Datacom',
+        _id: 'telecom-and-datacom',
+    },
+    {
+        title: 'Quantum Communication',
+        _id: 'quantum-communication',
+    },
+    {
+        title: 'Test & Measurment',
+        _id: 'test-and-measurement',
+    },
+    {
+        title: 'Sensing',
+        _id: 'sensing',
+    },
+    {
+        title: 'Medical',
+        _id: 'medical',
+    },
+    {
+        title: 'Automotive',
+        _id: 'automotive',
+    },
+];
 </script>
 
 <style lang="scss" scoped>
@@ -57,30 +71,5 @@ const partners = computed<Partner[]>(() => data.value?.partners || []);
     flex-direction: column;
     gap: 80px;
     margin: 4rem 0;
-}
-
-.about {
-    &__title {
-        padding: 0 1rem;
-
-        @include typography.font(headlines, h4);
-
-        @include functions.device(tablet) {
-            @include typography.font(headlines, h2);
-        }
-    }
-
-    &__text {
-        padding: 30px 20px;
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-
-        @include typography.font(body, m);
-
-        @include functions.device(tablet) {
-            @include typography.font(body, l);
-        }
-    }
 }
 </style>
