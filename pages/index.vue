@@ -27,7 +27,7 @@ const servicesQuery = `*[_type == "services"][0].services`;
 const partnersQuery = `*[_type == "partners"][0].partners`;
 const productsQuery = `*[_type == "products"][0].products`;
 const query = groq`{ "hero": ${heroQuery}, "services": ${servicesQuery}, "partners": ${partnersQuery}, "products": ${productsQuery} }`;
-const { data } = await useSanityQuery<QueryResponse>(query, { cache: 'no_store' });
+const { data } = await useSanityQuery<QueryResponse>(query);
 
 const hero = computed<Hero | null>(() => data.value?.hero || null);
 const heroHasImage = computed(() => hero.value?.image?.media?.asset?._ref);
