@@ -1,9 +1,10 @@
 <template>
-    <div class="card">{{ product.title }}</div>
+    <div class="card">{{ useTranslation(product.name) }}</div>
 </template>
 
 <script setup lang="ts">
 import type { Product } from '~/types/product';
+import { useTranslation } from '~/composables/useTranslation';
 
 defineProps<{ product: Product }>();
 </script>

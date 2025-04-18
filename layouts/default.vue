@@ -2,7 +2,9 @@
     <v-app>
         <LayoutHeader />
         <v-main class="main">
-            <slot />
+            <ClientOnly>
+                <slot />
+            </ClientOnly>
         </v-main>
         <LayoutFooter />
     </v-app>

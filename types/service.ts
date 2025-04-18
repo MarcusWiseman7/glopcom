@@ -1,9 +1,8 @@
-import type { SeoImage } from './sanity';
+import type { SeoImage, Translation } from './sanity';
 
 export type Service = {
     _id: string;
-    title: string;
+    name: Translation;
     image: SeoImage;
-    points: string[];
-    position: number;
+    points: Translation[];
 };

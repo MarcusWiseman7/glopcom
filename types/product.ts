@@ -1,7 +1,7 @@
-import type { SeoImage } from './sanity';
+import type { SeoImage, Translation } from './sanity';
 
 export type Product = {
     _id: string;
-    title: string;
+    name: Translation;
     image?: SeoImage;
 };

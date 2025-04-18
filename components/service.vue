@@ -7,8 +7,8 @@
         @mouseleave="overlay = false"
         @touchstart="overlay = !overlay"
     >
-        <v-card-title v-if="service.title" class="service__title">
-            {{ service.title }}
+        <v-card-title v-if="service.name" class="service__title">
+            {{ useTranslation(service.name) }}
         </v-card-title>
         <template #image>
             <SanityImage :asset-id="service.image.media.asset._ref" :alt="service.image.alt" auto="format" />
@@ -16,7 +16,7 @@
         <div :class="['overlay', { 'overlay--active': overlay }]">
             <ul>
                 <li v-for="(point, index) in service.points" :key="`point-${index}`">
-                    {{ point }}
+                    {{ useTranslation(point) }}
                 </li>
             </ul>
         </div>
@@ -25,6 +25,7 @@
 
 <script setup lang="ts">
 import type { Service } from '~/types/service';
+import { useTranslation } from '~/composables/useTranslation';
 
 defineProps<{
     service: Service;

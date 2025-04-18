@@ -1,4 +1,8 @@
+import type { SeoImage, Translation } from './sanity';
+
 export type Hero = {
-    assetId: string;
-    alt: string;
+    _id: string;
+    title: Translation;
+    subtitle: Translation;
+    image: SeoImage;
 };

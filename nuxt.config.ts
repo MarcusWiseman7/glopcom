@@ -46,6 +46,7 @@ export default defineNuxtConfig({
     sanity: {
         projectId: 'alvfsq58',
         dataset: 'production',
+        useCdn: false,
     },
 
     css: ['@/assets/styles/main.scss'],

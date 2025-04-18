@@ -1,15 +1,16 @@
 <template>
     <div class="hero">
-        <SanityImage :asset-id="hero.assetId" :alt="hero.alt" auto="format" />
+        <SanityImage :asset-id="hero.image.media.asset._ref" :alt="hero.image.alt" auto="format" />
         <div class="hero__text">
-            <h1 class="hero__text__title">{{ $t('hero.title') }}</h1>
-            <h3 class="hero__text__subtitle">{{ $t('hero.subtitle') }}</h3>
+            <h1 class="hero__text__title">{{ useTranslation(hero.title) }}</h1>
+            <h3 class="hero__text__subtitle">{{ useTranslation(hero.subtitle) }}</h3>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
 import type { Hero } from '~/types/hero';
+import { useTranslation } from '~/composables/useTranslation';
 
 defineProps<{ hero: Hero }>();
 </script>

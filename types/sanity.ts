@@ -9,3 +9,11 @@ export type SeoImage = {
         };
     };
 };
+
+export type Translation = {
+    value: {
+        _key: string;
+        value: string;
+        _type: string;
+    }[];
+};

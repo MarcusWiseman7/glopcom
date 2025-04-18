@@ -2,7 +2,7 @@
     <LayoutSection>
         <LayoutSectionTitle>{{ $t('index.section_title.product') }}</LayoutSectionTitle>
         <div class="products__list">
-            <Product v-for="product in products" :key="product._id" :product="product" />
+            <Product v-for="(product, index) in products" :key="`product-${index}`" :product="product" />
         </div>
     </LayoutSection>
 </template>
