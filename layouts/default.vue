@@ -2,7 +2,7 @@
     <v-app>
         <LayoutHeader />
         <v-main>
-            <Hero v-if="hero && heroHasImage" :hero="hero" />
+            <Hero v-if="heroHasImage" />
             <PlaceholdersBanner v-else />
             <div class="main">
                 <slot />
@@ -13,17 +13,9 @@
 </template>
 
 <script setup lang="ts">
-import type { Hero } from '~/types/hero';
+const { heroHasImage } = storeToRefs(useContentStore());
 
-type QueryResponse = {
-    hero: Hero;
-};
-
-const heroQuery = `*[_type == "hero"][0]`;
-const query = groq`{ "hero": ${heroQuery} }`;
-const { data } = await useSanityQuery<QueryResponse>(query);
-const hero = computed<Hero | null>(() => data.value?.hero || null);
-const heroHasImage = computed(() => hero.value?.image?.media?.asset?._ref);
+useFetchContent();
 </script>
 
 <style lang="scss" scoped>

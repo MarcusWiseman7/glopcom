@@ -65,7 +65,7 @@ onBeforeUnmount(() => {
     }
 
     :deep(.v-toolbar__content) {
-        max-width: 1000px;
+        max-width: var(--content-max-width);
         margin: 0 auto;
     }
 }

@@ -1,5 +1,5 @@
 <template>
-    <LayoutSection>
+    <LayoutSection v-if="partners">
         <LayoutSectionTitle>{{ $t('index.section_title.partners') }}</LayoutSectionTitle>
         <div class="partners__list">
             <Partner v-for="partner in partners" :key="partner._id" :partner="partner" />
@@ -8,9 +8,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Partner } from '~/types/partner';
-
-defineProps<{ partners: Partner[] }>();
+const { partners } = storeToRefs(useContentStore());
 </script>
 
 <style lang="scss" scoped>

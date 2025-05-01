@@ -1,5 +1,5 @@
 <template>
-    <div class="hero">
+    <div v-if="hero" class="hero">
         <SanityImage :asset-id="hero.image.media.asset._ref" :alt="hero.image.alt" auto="format" />
         <div class="hero__text">
             <h1 class="hero__text__title">{{ useTranslation(hero.title) }}</h1>
@@ -9,10 +9,9 @@
 </template>
 
 <script setup lang="ts">
-import type { Hero } from '~/types/hero';
 import { useTranslation } from '~/composables/useTranslation';
 
-defineProps<{ hero: Hero }>();
+const { hero } = storeToRefs(useContentStore());
 </script>
 
 <style lang="scss" scoped>

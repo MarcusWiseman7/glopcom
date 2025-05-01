@@ -1,5 +1,5 @@
 <template>
-    <LayoutSection>
+    <LayoutSection v-if="services">
         <LayoutSectionTitle>{{ $t('index.section_title.services') }}</LayoutSectionTitle>
         <div class="services__list">
             <Service v-for="service in services" :key="service._id" :service="service" />
@@ -8,9 +8,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Service } from '~/types/service';
-
-defineProps<{ services: Service[] }>();
+const { services } = storeToRefs(useContentStore());
 </script>
 
 <style lang="scss" scoped>

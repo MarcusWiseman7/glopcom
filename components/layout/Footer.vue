@@ -51,7 +51,7 @@
 
     &__content {
         width: 100%;
-        max-width: 1000px;
+        max-width: var(--content-max-width);
         margin: 0 auto;
         display: flex;
         flex-direction: column;

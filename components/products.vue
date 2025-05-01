@@ -1,5 +1,5 @@
 <template>
-    <LayoutSection>
+    <LayoutSection v-if="products">
         <LayoutSectionTitle>{{ $t('index.section_title.product') }}</LayoutSectionTitle>
         <div class="products__list">
             <Product v-for="(product, index) in products" :key="`product-${index}`" :product="product" />
@@ -8,9 +8,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Product } from '~/types/product';
-
-defineProps<{ products: Product[] }>();
+const { products } = storeToRefs(useContentStore());
 </script>
 
 <style lang="scss" scoped>
