@@ -17,8 +17,11 @@ defineProps<{ hero: Hero }>();
 
 <style lang="scss" scoped>
 .hero {
+    --max-hero-height: calc(100vh - var(--v-layout-top));
+
     position: relative;
     width: 100%;
+    max-height: var(--max-hero-height);
 
     @include functions.device(tablet) {
         min-height: 500px;
@@ -27,8 +30,10 @@ defineProps<{ hero: Hero }>();
     &__text {
         position: absolute;
         top: 0;
-        left: 0;
+        left: 50%;
+        transform: translateX(-50%);
         width: 80%;
+        max-width: var(--content-max-width);
         height: 100%;
         color: #fff;
         display: flex;
@@ -69,7 +74,8 @@ defineProps<{ hero: Hero }>();
     img {
         width: 100%;
         height: auto;
-        margin-top: 1px;
+        max-height: var(--max-hero-height);
+        object-fit: cover;
     }
 }
 </style>

@@ -73,7 +73,7 @@
         @include typography.font(headlines, h4);
 
         @include functions.device(tablet) {
-            @include typography.font(headlines, h2);
+            @include typography.font(headlines, h3);
         }
     }
 
