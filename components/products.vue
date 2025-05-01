@@ -16,9 +16,13 @@ const { products } = storeToRefs(useContentStore());
     &__list {
         width: 100%;
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(1, 1fr);
         gap: 0.75rem;
         padding: 0 1rem;
+
+        @include functions.device(largeMobile) {
+            grid-template-columns: repeat(2, 1fr);
+        }
 
         @include functions.device(tablet) {
             grid-template-columns: repeat(3, 1fr);

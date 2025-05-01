@@ -1,6 +1,6 @@
 <template>
     <div v-if="hero" class="hero">
-        <SanityImage :asset-id="hero.image.media.asset._ref" :alt="hero.image.alt" auto="format" />
+        <GImage :image="hero.image" />
         <div class="hero__text">
             <h1 class="hero__text__title">{{ useTranslation(hero.title) }}</h1>
             <h3 class="hero__text__subtitle">{{ useTranslation(hero.subtitle) }}</h3>

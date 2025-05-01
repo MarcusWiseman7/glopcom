@@ -11,7 +11,7 @@
             {{ useTranslation(service.name) }}
         </v-card-title>
         <template #image>
-            <SanityImage :asset-id="service.image.media.asset._ref" :alt="service.image.alt" auto="format" />
+            <GImage :image="service.image" />
         </template>
         <div :class="['overlay', { 'overlay--active': overlay }]">
             <ul>
