@@ -1,13 +1,17 @@
 <template>
     <ul class="nav">
-        <div v-for="(item, index) in items" :key="`nav-item-${index}`" class="nav__item" @click="navClick(item.id)">
+        <li v-for="(item, index) in items" :key="`nav-item-${index}`" class="nav__item" @click="navClick(item.id)">
             {{ item.title }}
-        </div>
+        </li>
+        <li class="nav__item">
+            <LanguageSwitcher />
+        </li>
     </ul>
 </template>
 
 <script setup lang="ts">
 const { t } = useI18n();
+const emit = defineEmits<{ (e: 'close'): void }>();
 
 const items = [
     { title: t('nav.about_us'), id: 'about' },
@@ -22,6 +26,8 @@ const navClick = (id: string) => {
     if (el) {
         const y = el.getBoundingClientRect().top + window.scrollY;
         window.scrollTo({ top: y - 120, behavior: 'smooth' });
+
+        emit('close');
     }
 };
 </script>
@@ -36,12 +42,14 @@ const navClick = (id: string) => {
 
     @include functions.device(tablet) {
         flex-direction: row;
+        align-items: center;
         gap: 2rem;
         padding: 0 2rem;
     }
 
     &__item {
         text-decoration: none;
+        list-style: none;
         color: #fff;
         white-space: pre-wrap;
         cursor: pointer;

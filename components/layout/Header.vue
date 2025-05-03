@@ -18,7 +18,7 @@
         </template>
     </v-app-bar>
     <v-navigation-drawer v-if="mobile" v-model="drawer" color="black">
-        <LayoutNav />
+        <LayoutNav @close="drawer = false" />
     </v-navigation-drawer>
 </template>
 
