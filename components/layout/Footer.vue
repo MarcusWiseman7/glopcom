@@ -5,31 +5,57 @@
         </div>
         <div class="footer__content">
             <h2 class="footer__title">{{ $t('index.section_title.contact') }}</h2>
-            <div class="footer__text footer__contact">
+            <div v-if="contact" class="footer__text footer__contact">
                 <div class="footer__contact__info">
                     <div class="footer__text">
-                        <p>GLOPCOM GmbH</p>
-                        <p>Wylstrasse 11B, 6052 Hergiswil</p>
-                        <p>Switzerland</p>
+                        <a :href="`mailto:${contact.email}`">
+                            <p>Email: {{ contact.email }}</p>
+                        </a>
+                        <a :href="`tel:${contact.phone.replace(/\s/g, '')}`">
+                            <p>Phone: {{ contact.phone }}</p>
+                        </a>
                     </div>
-                    <div>
-                        <a href="mailto:peter.rajec@glopcom.com">
-                            <p>Email: peter.rajec@glopcom.com</p>
-                        </a>
-                        <a href="tel:+41797649020">
-                            <p>Phone: +41 79 764 9020</p>
-                        </a>
-                        <p>VAT number: CHE-248.093.923 MWST</p>
+                    <div class="footer__text">
+                        <p>{{ contact.title }}</p>
+                        <p>
+                            {{ contact.address.street }}, {{ contact.address.zipcode }} {{ contact.address.city }},
+                            {{ contact.address.country }}
+                        </p>
+                        <p>VAT number: {{ contact.vat }}</p>
+                    </div>
+                    <div class="footer__copyright">
+                        <small>&copy; {{ new Date().getFullYear() }} {{ contact.title }}</small>
                     </div>
                 </div>
                 <div class="footer__social">
-                    <p>Follow us</p>
-                    <img src="~/assets/icons/linkedin.svg" alt="linked in" />
+                    <p>Let's connect</p>
+                    <div class="footer__social__icons">
+                        <NuxtLink
+                            v-for="social in filteredSocials"
+                            :key="social.name"
+                            :to="social.url"
+                            class="footer__social__icon"
+                            target="_blank"
+                            external
+                        >
+                            <img :src="`./icons/${social.name}.svg`" :alt="social.name" />
+                        </NuxtLink>
+                    </div>
                 </div>
             </div>
         </div>
     </v-footer>
 </template>
+
+<script setup lang="ts">
+const { contact } = storeToRefs(useContentStore());
+
+const INCLUDED_SOCIALS = ['linkedin', 'whatsapp', 'wechat'];
+
+const filteredSocials = computed(
+    () => contact.value?.social?.filter((social) => INCLUDED_SOCIALS.includes(social.name)) || [],
+);
+</script>
 
 <style lang="scss" scoped>
 .footer {
@@ -110,11 +136,39 @@
     &__social {
         display: flex;
         align-items: center;
-        gap: 1rem;
+        gap: 2rem;
 
         @include functions.device(tablet) {
             flex-direction: column;
-            gap: 0.5rem;
+            margin-top: -4rem;
+        }
+
+        &__icons {
+            display: flex;
+            gap: 1rem;
+
+            @include functions.device(tablet) {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        &__icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            img {
+                width: 42px;
+                height: 42px;
+            }
+
+            @include functions.device(tablet) {
+                img {
+                    width: 52px;
+                    height: 52px;
+                }
+            }
         }
     }
 }
