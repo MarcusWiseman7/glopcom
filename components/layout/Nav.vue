@@ -1,7 +1,7 @@
 <template>
     <ul class="nav">
         <li v-for="(item, index) in items" :key="`nav-item-${index}`" class="nav__item" @click="navClick(item.id)">
-            {{ item.title }}
+            {{ $t(item.title) }}
         </li>
         <li class="nav__item">
             <LanguageSwitcher />
@@ -14,11 +14,11 @@ const { t } = useI18n();
 const emit = defineEmits<{ (e: 'close'): void }>();
 
 const items = [
-    { title: t('nav.about_us'), id: 'about' },
-    { title: t('nav.services'), id: 'services' },
-    { title: t('nav.product'), id: 'products' },
-    { title: t('nav.partners'), id: 'partners' },
-    { title: t('nav.contact'), id: 'contact' },
+    { title: 'nav.about_us', id: 'about' },
+    { title: 'nav.services', id: 'services' },
+    { title: 'nav.product', id: 'products' },
+    { title: 'nav.partners', id: 'partners' },
+    { title: 'nav.contact', id: 'contact' },
 ];
 
 const navClick = (id: string) => {
