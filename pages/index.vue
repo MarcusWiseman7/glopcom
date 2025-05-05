@@ -4,6 +4,7 @@
         <Services id="services" />
         <Products id="products" />
         <Partners id="partners" />
+        <Testimonial />
     </div>
 </template>
 
