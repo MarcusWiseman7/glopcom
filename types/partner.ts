@@ -1,9 +1,9 @@
-import type { SeoImage } from './sanity';
+import type { SeoImage, Translation } from './sanity';
 
 export type Partner = {
-    _id: string;
+    _key: string;
     name: string;
     logo: SeoImage;
     url: string;
-    points: string[];
+    description: Translation;
 };

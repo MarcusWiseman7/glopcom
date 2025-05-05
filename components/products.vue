@@ -26,7 +26,10 @@ const { products } = storeToRefs(useContentStore());
 
         @include functions.device(tablet) {
             grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
+        }
+
+        @include functions.device(desktop) {
+            gap: 1rem;
             padding: 0;
         }
     }

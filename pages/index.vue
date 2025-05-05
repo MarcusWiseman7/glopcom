@@ -2,8 +2,8 @@
     <div class="content">
         <About id="about" />
         <Services id="services" />
-        <Partners id="partners" />
         <Products id="products" />
+        <Partners id="partners" />
     </div>
 </template>
 

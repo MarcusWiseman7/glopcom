@@ -16,11 +16,16 @@ const { services } = storeToRefs(useContentStore());
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
+    gap: 0.75rem;
+    padding: 0 1rem;
 
     @include functions.device(tablet) {
         flex-direction: row;
+    }
+
+    @include functions.device(desktop) {
         gap: 1rem;
+        padding: 0;
     }
 }
 </style>

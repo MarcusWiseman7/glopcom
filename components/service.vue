@@ -44,6 +44,7 @@ const overlay = ref(false);
     height: 120px;
     transition: height 0.3s ease-in-out;
     text-shadow: var(--text-shadow-black);
+    border-radius: 20px;
 
     &--expanded {
         height: 400px;
@@ -53,6 +54,7 @@ const overlay = ref(false);
         width: 100%;
         height: 100%;
         object-fit: cover;
+        border-radius: 20px;
     }
 
     @include functions.device(tablet) {
@@ -64,10 +66,12 @@ const overlay = ref(false);
     &__title {
         white-space: pre-line;
 
-        @include typography.font(headlines, h6);
+        @include typography.font(body, xl);
 
         @include functions.device(tablet) {
             @include typography.font(headlines, h5);
+
+            font-weight: 400;
         }
     }
 }

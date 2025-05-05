@@ -54,8 +54,7 @@ onBeforeUnmount(() => {
         transform: translate(calc(50% - 52px), 0);
 
         @include functions.device(tablet) {
-            height: 80px;
-            margin-left: 10px;
+            height: 68px;
             transform: translate(0, 0);
         }
 

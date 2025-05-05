@@ -4,4 +4,5 @@ export type Product = {
     _id: string;
     name: Translation;
     image?: SeoImage;
+    description: Translation;
 };
