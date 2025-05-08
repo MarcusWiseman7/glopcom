@@ -1,4 +1,4 @@
-import type { Messages, SanityTranslationEntry } from './types/i18n';
+import type { Messages, SanityTranslationEntry } from '../types/i18n';
 
 const translateArrayToObject = (input: SanityTranslationEntry[]): Messages => {
     const output: Messages = { en: {} };

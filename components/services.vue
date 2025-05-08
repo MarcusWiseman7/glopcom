@@ -2,11 +2,13 @@
     <LayoutSection v-if="services">
         <LayoutSectionTitle>{{ $t('index.section_title.services') }}</LayoutSectionTitle>
         <div class="services__carousel">
-            <Carousel v-bind="carouselConfig">
-                <Slide v-for="service in services" :key="service._id">
-                    <Service :service="service" />
-                </Slide>
-            </Carousel>
+            <ClientOnly>
+                <Carousel v-bind="carouselConfig">
+                    <Slide v-for="service in services" :key="service._id">
+                        <Service :service="service" />
+                    </Slide>
+                </Carousel>
+            </ClientOnly>
         </div>
     </LayoutSection>
 </template>
@@ -14,6 +16,7 @@
 <script setup lang="ts">
 import 'vue3-carousel/carousel.css';
 import { Carousel, Slide } from 'vue3-carousel';
+import { ClientOnly } from '#components';
 
 const { services } = storeToRefs(useContentStore());
 

@@ -4,13 +4,13 @@ export default defineNuxtConfig({
 
     modules: ['@nuxt/eslint', '@nuxtjs/i18n', 'vuetify-nuxt-module', '@pinia/nuxt', '@nuxtjs/sanity'],
 
-    robots: {
-        groups: [
-            {
-                disallow: [],
-            },
-        ],
-    },
+    // robots: {
+    //     groups: [
+    //         {
+    //             disallow: [],
+    //         },
+    //     ],
+    // },
 
     i18n: {
         locales: [
@@ -20,7 +20,6 @@ export default defineNuxtConfig({
         strategy: 'prefix_except_default',
         defaultLocale: 'en',
         baseUrl: import.meta.dev ? 'http://localhost:3000' : 'https://glopcom.com',
-        vueI18n: './i18n.config.ts',
     },
 
     vuetify: {

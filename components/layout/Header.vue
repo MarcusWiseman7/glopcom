@@ -28,7 +28,7 @@ import { useDisplay } from 'vuetify';
 
 const { mobile } = useDisplay();
 const localePath = useLocalePath();
-const { logo } = storeToRefs(useMediaStore());
+const { logo } = storeToRefs(useContentStore());
 
 const drawer = ref(false);
 
