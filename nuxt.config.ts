@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
     compatibilityDate: '2024-11-01',
 
-    modules: ['@nuxtjs/seo', '@nuxt/eslint', '@nuxtjs/i18n', 'vuetify-nuxt-module', '@pinia/nuxt', '@nuxtjs/sanity'],
+    modules: ['@nuxt/eslint', '@nuxtjs/i18n', 'vuetify-nuxt-module', '@pinia/nuxt', '@nuxtjs/sanity'],
 
     robots: {
         groups: [

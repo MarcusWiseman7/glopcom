@@ -1,19 +1,12 @@
 <template>
-    <v-card
-        :class="['service', { 'service--expanded': mobile && overlay }]"
-        flat
-        tile
-        @mouseenter="overlay = true"
-        @mouseleave="overlay = false"
-        @touchstart="overlay = !overlay"
-    >
+    <v-card class="service" flat tile>
         <v-card-title v-if="service.name" class="service__title">
             {{ useTranslation(service.name) }}
         </v-card-title>
         <template #image>
             <GImage :image="service.image" />
         </template>
-        <div :class="['overlay', { 'overlay--active': overlay }]">
+        <div class="overlay">
             <ul>
                 <li v-for="(point, index) in service.points" :key="`point-${index}`">
                     {{ useTranslation(point) }}
@@ -41,7 +34,8 @@ const overlay = ref(false);
     position: relative;
     padding: 1rem;
     color: #fff;
-    height: 120px;
+    height: 600px;
+    width: 100%;
     transition: height 0.3s ease-in-out;
     text-shadow: var(--text-shadow-black);
     border-radius: 20px;

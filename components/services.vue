@@ -1,31 +1,53 @@
 <template>
     <LayoutSection v-if="services">
         <LayoutSectionTitle>{{ $t('index.section_title.services') }}</LayoutSectionTitle>
-        <div class="services__list">
-            <Service v-for="service in services" :key="service._id" :service="service" />
+        <div class="services__carousel">
+            <Carousel v-bind="carouselConfig">
+                <Slide v-for="service in services" :key="service._id">
+                    <Service :service="service" />
+                </Slide>
+            </Carousel>
         </div>
     </LayoutSection>
 </template>
 
 <script setup lang="ts">
+import 'vue3-carousel/carousel.css';
+import { Carousel, Slide } from 'vue3-carousel';
+
 const { services } = storeToRefs(useContentStore());
+
+const carouselConfig = ref({
+    itemsToShow: 1.25,
+    gap: 12,
+    breakpoints: {
+        600: {
+            itemsToShow: 3,
+            mouseDrag: false,
+            touchDrag: false,
+        },
+        1280: {
+            itemsToShow: 3,
+            gap: 16,
+            mouseDrag: false,
+            touchDrag: false,
+        },
+    },
+});
 </script>
 
 <style lang="scss" scoped>
-.services__list {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    padding: 0 1rem;
+.services {
+    &__carousel {
+        padding: 0 0.5rem;
 
-    @include functions.device(tablet) {
-        flex-direction: row;
-    }
+        @include functions.device(largeMobile) {
+            padding: 0 1rem;
+        }
 
-    @include functions.device(desktop) {
-        gap: 1rem;
-        padding: 0;
+        @include functions.device(desktop) {
+            padding: 0;
+        }
     }
 }
 </style>
