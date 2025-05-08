@@ -1,60 +1,58 @@
 <template>
-    <v-card class="service" flat tile>
-        <v-card-title v-if="service.name" class="service__title">
-            {{ useTranslation(service.name) }}
-        </v-card-title>
-        <template #image>
-            <GImage :image="service.image" />
-        </template>
-        <div class="overlay">
-            <ul>
-                <li v-for="(point, index) in service.points" :key="`point-${index}`">
-                    {{ useTranslation(point) }}
-                </li>
-            </ul>
+    <GCard>
+        <div class="service">
+            <div v-if="service.image" class="service__image">
+                <GImage :image="service.image" />
+            </div>
+            <div class="service__title__wrapper">
+                <div v-if="service.name" class="service__title">
+                    {{ useTranslation(service.name) }}
+                </div>
+            </div>
+            <div class="overlay">
+                <ul>
+                    <li v-for="(point, index) in service.points" :key="`point-${index}`">
+                        {{ useTranslation(point) }}
+                    </li>
+                </ul>
+            </div>
         </div>
-    </v-card>
+    </GCard>
 </template>
 
 <script setup lang="ts">
 import type { Service } from '~/types/service';
-import { useTranslation } from '~/composables/useTranslation';
 
 defineProps<{
     service: Service;
 }>();
 
-const { mobile } = useDisplay();
-
-const overlay = ref(false);
+// const overlay = ref(false);
 </script>
 
 <style lang="scss" scoped>
 .service {
     position: relative;
-    padding: 1rem;
     color: #fff;
-    height: 600px;
-    width: 100%;
-    transition: height 0.3s ease-in-out;
     text-shadow: var(--text-shadow-black);
-    border-radius: 20px;
+    height: 540px;
+    width: 100%;
+    display: grid;
+    grid-template-rows: 30% 1fr;
 
-    &--expanded {
-        height: 400px;
-    }
-
-    img {
+    &__image {
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
-        object-fit: cover;
-        border-radius: 20px;
-    }
+        z-index: -1;
 
-    @include functions.device(tablet) {
-        flex: 1;
-        height: 600px;
-        width: 100%;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
     }
 
     &__title {
@@ -67,44 +65,38 @@ const overlay = ref(false);
 
             font-weight: 400;
         }
+
+        &__wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 2rem;
+
+            @include functions.device(tablet) {
+                padding: 0 4rem;
+            }
+        }
     }
 }
 
 .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    padding: 1rem;
-    display: flex;
-    align-items: flex-end;
-    z-index: 1;
-    opacity: 0;
-    background-color: rgba(0, 0, 0, 0.1);
-    transition: opacity 0.4s ease-in-out;
-
-    &--active {
-        opacity: 1;
-    }
-
     ul {
+        height: 100%;
         display: flex;
         flex-direction: column;
-        gap: 0.75rem;
-        background-color: transparent;
-        color: #fff;
-        padding: 0 2rem 1rem;
-
-        @include functions.device(tablet) {
-            padding: 0 2.5rem 1rem;
-        }
+        justify-content: space-around;
+        padding: 0 1rem 2rem;
+        list-style: none;
     }
 
     li {
         white-space: pre-wrap;
 
         @include typography.font(body, s);
+
+        @include functions.device(tablet) {
+            @include typography.font(body, m);
+        }
     }
 }
 </style>

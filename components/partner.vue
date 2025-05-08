@@ -1,5 +1,5 @@
 <template>
-    <GCard>
+    <GFlipCard>
         <template #front>
             <div class="partner">
                 <SanityImage
@@ -28,7 +28,7 @@
                 </NuxtLink>
             </div>
         </template>
-    </GCard>
+    </GFlipCard>
 </template>
 
 <script setup lang="ts">

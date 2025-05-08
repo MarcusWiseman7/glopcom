@@ -7,6 +7,10 @@
                     <Slide v-for="service in services" :key="service._id">
                         <Service :service="service" />
                     </Slide>
+
+                    <template #addons>
+                        <Pagination />
+                    </template>
                 </Carousel>
             </ClientOnly>
         </div>
@@ -15,7 +19,7 @@
 
 <script setup lang="ts">
 import 'vue3-carousel/carousel.css';
-import { Carousel, Slide } from 'vue3-carousel';
+import { Carousel, Slide, Pagination } from 'vue3-carousel';
 import { ClientOnly } from '#components';
 
 const { services } = storeToRefs(useContentStore());
@@ -50,6 +54,21 @@ const carouselConfig = ref({
 
         @include functions.device(desktop) {
             padding: 0;
+        }
+    }
+}
+
+.carousel {
+    --vc-pgn-background-color: rgba(255, 255, 255, 0.7);
+    --vc-pgn-active-color: rgba(255, 255, 255, 1);
+    --vc-pgn-border-radius: 9999px;
+    --vc-pgn-height: 8px;
+    --vc-pgn-width: 8px;
+    --vc-pgn-gap: 8px;
+
+    &__pagination {
+        @include functions.device(largeMobile) {
+            display: none;
         }
     }
 }

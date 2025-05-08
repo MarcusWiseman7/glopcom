@@ -1,5 +1,5 @@
 <template>
-    <GCard>
+    <GFlipCard>
         <template #front>
             <div class="product">
                 <div v-if="product.image" class="product__background-image">
@@ -17,7 +17,7 @@
                 </div>
             </div>
         </template>
-    </GCard>
+    </GFlipCard>
 </template>
 
 <script setup lang="ts">
@@ -36,10 +36,6 @@ defineProps<{ product: Product }>();
     align-items: center;
     text-align: center;
     padding: 1rem;
-
-    @include functions.device(largeMobile) {
-        padding: 2rem;
-    }
 
     &__name {
         z-index: 1;
@@ -69,6 +65,9 @@ defineProps<{ product: Product }>();
 
     &__description {
         background-color: white;
+        overflow: auto;
+        max-height: 100%;
+        text-align: start;
 
         @include typography.font(body, s);
     }

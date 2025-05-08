@@ -1,55 +1,13 @@
 <template>
-    <div class="container" @mouseenter="flipped = true" @mouseleave="flipped = false" @touchend="atTouchend">
-        <div :class="['card', { 'card--flipped': flipped }]">
-            <div class="card__side card__front">
-                <slot name="front" />
-            </div>
-            <div class="card__side card__back">
-                <slot name="back" />
-            </div>
-        </div>
-    </div>
+    <div class="card"><slot /></div>
 </template>
 
-<script setup lang="ts">
-const flipped = ref(false);
-
-const atTouchend = () => {
-    if (!flipped.value) flipped.value = true;
-};
-</script>
-
-<style lang="scss">
-.container {
-    perspective: 1000px;
-}
-
+<style lang="scss" scoped>
 .card {
-    height: 200px;
-    position: relative;
-    transform-style: preserve-3d;
-    transition: transform 0.6s ease-in-out;
-
-    @include functions.device(largeMobile) {
-        height: 240px;
-    }
-
-    &--flipped {
-        transform: rotateY(180deg);
-    }
-
-    &__side {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        backface-visibility: hidden;
-        border-radius: 10px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        overflow: hidden;
-    }
-
-    &__back {
-        transform: rotateY(180deg);
-    }
+    width: 100%;
+    height: 100%;
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
 }
 </style>
