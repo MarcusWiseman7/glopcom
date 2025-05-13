@@ -87,8 +87,11 @@ defineProps<{
         justify-content: space-around;
         padding: 0 1rem 2rem;
         list-style: none;
-        opacity: 0;
         transition: opacity 0.4s ease-in-out;
+
+        @include functions.device(largeMobile) {
+            opacity: 0;
+        }
     }
 
     li {
@@ -101,9 +104,11 @@ defineProps<{
         }
     }
 
-    &--show {
-        ul {
-            opacity: 1;
+    @include functions.device(largeMobile) {
+        &--show {
+            ul {
+                opacity: 1;
+            }
         }
     }
 }
