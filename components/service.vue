@@ -9,7 +9,7 @@
                     {{ useTranslation(service.name) }}
                 </div>
             </div>
-            <div class="overlay">
+            <div :class="['overlay', { 'overlay--show': showContent }]">
                 <ul>
                     <li v-for="(point, index) in service.points" :key="`point-${index}`">
                         {{ useTranslation(point) }}
@@ -22,12 +22,12 @@
 
 <script setup lang="ts">
 import type { Service } from '~/types/service';
+import type GCard from '~/components/gCard.vue';
 
 defineProps<{
     service: Service;
+    showContent: boolean;
 }>();
-
-// const overlay = ref(false);
 </script>
 
 <style lang="scss" scoped>
@@ -87,6 +87,8 @@ defineProps<{
         justify-content: space-around;
         padding: 0 1rem 2rem;
         list-style: none;
+        opacity: 0;
+        transition: opacity 0.4s ease-in-out;
     }
 
     li {
@@ -96,6 +98,12 @@ defineProps<{
 
         @include functions.device(tablet) {
             @include typography.font(body, m);
+        }
+    }
+
+    &--show {
+        ul {
+            opacity: 1;
         }
     }
 }

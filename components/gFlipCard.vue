@@ -43,13 +43,21 @@ const atTouchend = () => {
         width: 100%;
         height: 100%;
         backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        transform-style: preserve-3d;
         border-radius: var(--card-border-radius);
         box-shadow: var(--card-shadow);
         overflow: hidden;
+        will-change: transform;
+    }
+
+    &__front {
+        background-color: white;
     }
 
     &__back {
         transform: rotateY(180deg);
+        background-color: white;
     }
 }
 </style>

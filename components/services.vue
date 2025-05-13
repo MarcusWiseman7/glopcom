@@ -1,13 +1,15 @@
 <template>
     <LayoutSection v-if="services">
         <LayoutSectionTitle>{{ $t('index.section_title.services') }}</LayoutSectionTitle>
-        <div class="services__carousel">
+        <div ref="servicesRef" class="services__carousel">
             <ClientOnly>
                 <Carousel v-bind="carouselConfig">
-                    <Slide v-for="service in services" :key="service._id">
-                        <Service :service="service" />
+                    <Slide v-for="(service, index) in services" :key="service._id">
+                        <Service
+                            :service="service"
+                            :showContent="showServices[`service_${index}` as keyof typeof showServices]"
+                        />
                     </Slide>
-
                     <template #addons>
                         <Pagination />
                     </template>
@@ -20,11 +22,10 @@
 <script setup lang="ts">
 import 'vue3-carousel/carousel.css';
 import { Carousel, Slide, Pagination } from 'vue3-carousel';
-import { ClientOnly } from '#components';
 
 const { services } = storeToRefs(useContentStore());
 
-const carouselConfig = ref({
+const carouselConfig = {
     itemsToShow: 1.25,
     gap: 12,
     breakpoints: {
@@ -40,6 +41,35 @@ const carouselConfig = ref({
             touchDrag: false,
         },
     },
+};
+const servicesRef = ref<HTMLElement | null>(null);
+const observer = ref<IntersectionObserver | null>(null);
+const showServices = ref({
+    service_0: false,
+    service_1: false,
+    service_2: false,
+});
+
+onMounted(() => {
+    observer.value = new IntersectionObserver(
+        (entries) => {
+            const entry = entries[0];
+            const ratioInView = entry.intersectionRatio;
+
+            showServices.value.service_0 = ratioInView > 0.5;
+            showServices.value.service_1 = ratioInView > 0.7;
+            showServices.value.service_2 = ratioInView > 0.9;
+        },
+        {
+            threshold: Array.from({ length: 101 }, (_, i) => i / 100),
+        },
+    );
+
+    if (servicesRef.value) observer.value.observe(servicesRef.value);
+});
+
+onBeforeUnmount(() => {
+    observer.value?.disconnect();
 });
 </script>
 
