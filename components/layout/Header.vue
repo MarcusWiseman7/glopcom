@@ -49,9 +49,9 @@ onBeforeUnmount(() => {
 .header {
     &__logo {
         width: auto;
-        height: 60px;
+        height: 30px;
         object-fit: cover;
-        transform: translate(calc(50% - 52px), 0);
+        transform: translate(1rem, 0);
 
         @include functions.device(tablet) {
             height: 68px;
@@ -60,6 +60,7 @@ onBeforeUnmount(() => {
 
         &__wrapper {
             flex: 1;
+            justify-content: start;
         }
     }
 

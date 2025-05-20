@@ -1,8 +1,9 @@
 <template>
     <div v-if="testimonial" class="testimonial">
         <div class="testimonial__quote">
-            <img src="~/assets/images/quote_frame.svg" alt="quote frame" class="testimonial__quote__frame" />
-            <p>{{ useTranslation(testimonial.quote) }}</p>
+            <QuoteBox>
+                <p>{{ useTranslation(testimonial.quote) }}</p>
+            </QuoteBox>
         </div>
         <div v-if="testimonial.author" class="testimonial__author">
             <GImage v-if="testimonial.author.image" :image="testimonial.author.image" />
@@ -40,8 +41,8 @@ const { testimonial } = storeToRefs(useContentStore());
         align-items: center;
         z-index: 1;
         min-height: 148px;
-        width: 80%;
-        padding: 4rem 3rem;
+        width: 70%;
+        padding: 1rem;
 
         @include typography.font(body, xs);
 
@@ -70,7 +71,7 @@ const { testimonial } = storeToRefs(useContentStore());
     &__author {
         display: flex;
         justify-content: flex-end;
-        margin-top: -3rem;
+        margin-top: -2rem;
 
         @include typography.font(body, xs);
 

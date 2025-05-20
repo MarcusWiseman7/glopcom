@@ -15,7 +15,7 @@ export const useContentStore = defineStore('content', () => {
     const contact = ref<ContactInfo | null>(null);
     const logo = ref<SeoImage | null>(null);
 
-    const heroHasImage = computed(() => hero.value?.image?.media?.asset?._ref);
+    const heroHasImage = computed(() => hero.value?.images && hero.value?.images.length > 0);
 
     return { hero, heroHasImage, services, partners, products, testimonial, contact, logo };
 });

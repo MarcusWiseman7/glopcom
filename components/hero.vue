@@ -1,6 +1,6 @@
 <template>
     <div v-if="hero" class="hero">
-        <GImage :image="hero.image" />
+        <GPicture :images="hero.images" />
         <div class="hero__text">
             <h1 class="hero__text__title">{{ useTranslation(hero.title) }}</h1>
             <h3 class="hero__text__subtitle">{{ useTranslation(hero.subtitle) }}</h3>
@@ -70,7 +70,7 @@ const { hero } = storeToRefs(useContentStore());
         }
     }
 
-    img {
+    :deep(img) {
         width: 100%;
         height: auto;
         max-height: var(--max-hero-height);
