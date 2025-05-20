@@ -49,7 +49,7 @@ onBeforeUnmount(() => {
 .header {
     &__logo {
         width: auto;
-        height: 30px;
+        height: 40px;
         object-fit: cover;
         transform: translate(1rem, 0);
 
