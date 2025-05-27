@@ -1,6 +1,6 @@
 <template>
-    <v-app-bar :height="100" color="black" class="header">
-        <template #default>
+    <header class="header">
+        <div class="header__inner">
             <NuxtLink :to="{ path: localePath('index') }" class="header__logo__wrapper">
                 <SanityImage
                     v-if="logo?.media?.asset?._ref"
@@ -11,15 +11,15 @@
                 />
                 <PlaceholdersLogo v-else />
             </NuxtLink>
-        </template>
-        <template #append>
             <LayoutNav v-if="!mobile" />
-            <v-app-bar-nav-icon v-else @click="drawer = !drawer" />
-        </template>
-    </v-app-bar>
-    <v-navigation-drawer v-if="mobile" v-model="drawer" color="black">
-        <LayoutNav @close="drawer = false" />
-    </v-navigation-drawer>
+            <img v-else src="~/assets/icons/menu.svg" alt="menu" class="header__menu-icon" @click="drawer = !drawer" />
+        </div>
+    </header>
+    <ClientOnly>
+        <v-navigation-drawer v-if="mobile" v-model="drawer" color="black">
+            <LayoutNav @close="drawer = false" />
+        </v-navigation-drawer>
+    </ClientOnly>
 </template>
 
 <script setup lang="ts">
@@ -47,6 +47,24 @@ onBeforeUnmount(() => {
 
 <style lang="scss" scoped>
 .header {
+    height: var(--height-header);
+    background-color: #000;
+    color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 99;
+
+    &__inner {
+        height: 100%;
+        width: 100%;
+        margin: 0 auto;
+        max-width: var(--content-max-width);
+        display: flex;
+        align-items: center;
+    }
+
     &__logo {
         width: auto;
         height: 40px;
@@ -64,9 +82,18 @@ onBeforeUnmount(() => {
         }
     }
 
+    &__menu-icon {
+        cursor: pointer;
+        padding: 2rem;
+    }
+
     :deep(.v-toolbar__content) {
         max-width: var(--content-max-width);
         margin: 0 auto;
     }
+}
+
+.v-navigation-drawer {
+    margin-top: var(--height-header);
 }
 </style>

@@ -16,14 +16,16 @@ const { hero } = storeToRefs(useContentStore());
 
 <style lang="scss" scoped>
 .hero {
-    --max-hero-height: calc(100vh - var(--v-layout-top));
+    --max-hero-height: calc(100vh - var(--height-header));
 
     position: relative;
+    margin-top: var(--height-header);
     width: 100%;
-    max-height: var(--max-hero-height);
+    aspect-ratio: var(--aspect-ratio-hero-mobile);
 
     @include functions.device(tablet) {
-        min-height: 500px;
+        max-height: var(--max-hero-height);
+        aspect-ratio: var(--aspect-ratio-hero-desktop);
     }
 
     &__text {
@@ -72,9 +74,13 @@ const { hero } = storeToRefs(useContentStore());
 
     :deep(img) {
         width: 100%;
-        height: auto;
-        max-height: var(--max-hero-height);
+        aspect-ratio: var(--aspect-ratio-hero-mobile);
         object-fit: cover;
+
+        @include functions.device(tablet) {
+            aspect-ratio: var(--aspect-ratio-hero-desktop);
+            max-height: var(--max-hero-height);
+        }
     }
 }
 </style>

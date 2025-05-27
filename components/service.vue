@@ -22,7 +22,6 @@
 
 <script setup lang="ts">
 import type { Service } from '~/types/service';
-import type GCard from '~/components/gCard.vue';
 
 defineProps<{
     service: Service;
@@ -35,7 +34,7 @@ defineProps<{
     position: relative;
     color: #fff;
     text-shadow: var(--text-shadow-black);
-    height: 540px;
+    height: var(--height-carousel);
     width: 100%;
     display: grid;
     grid-template-rows: 30% 1fr;

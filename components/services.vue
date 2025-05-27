@@ -77,6 +77,7 @@ onBeforeUnmount(() => {
 .services {
     &__carousel {
         padding: 0 0.5rem;
+        height: var(--height-carousel);
 
         @include functions.device(largeMobile) {
             padding: 0 1rem;

@@ -3,8 +3,28 @@
     --text-shadow-black: 1px 1px 2px #000;
     --card-border-radius: 20px;
     --card-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+    --height-header: 100px;
+    --height-carousel: 540px;
+
+    --aspect-ratio-hero-mobile: 1 / 1;
+    --aspect-ratio-hero-desktop: 911 / 512;
 }
 
 body {
     overflow: hidden;
+}
+
+.mobile {
+    @include functions.device(tablet) {
+        display: none;
+    }
+}
+
+.desktop {
+    display: none;
+    
+    @include functions.device(tablet) {
+        display: inherit;
+    }
 }
