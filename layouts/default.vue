@@ -8,7 +8,9 @@
                 <slot />
             </div>
         </v-main>
-        <LayoutFooter />
+        <ClientOnly>
+            <LayoutFooter />
+        </ClientOnly>
     </v-app>
 </template>
 
