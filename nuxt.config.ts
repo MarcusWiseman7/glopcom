@@ -1,16 +1,24 @@
+import { defineOrganization } from 'nuxt-schema-org/schema';
+
+const DESCRIPTION =
+    'At GLOPCOM - Global Optical Components, we believe in building long-term, trust-based partnerships that drive sustainable business success in the optical communication, sensing, semiconductor, and automotive industries. Our mission is to connect technology with market needs, helping companies optimize their sales strategies, expand their global presence, and access high-quality optical components.';
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     compatibilityDate: '2024-11-01',
 
-    modules: ['@nuxt/eslint', '@nuxtjs/i18n', 'vuetify-nuxt-module', '@pinia/nuxt', '@nuxtjs/sanity'],
-
-    // robots: {
-    //     groups: [
-    //         {
-    //             disallow: [],
-    //         },
-    //     ],
-    // },
+    modules: [
+        '@nuxt/eslint',
+        '@nuxtjs/i18n',
+        'vuetify-nuxt-module',
+        '@pinia/nuxt',
+        '@nuxtjs/sanity',
+        '@nuxtjs/sitemap',
+        '@nuxtjs/robots',
+        'nuxt-schema-org',
+        'nuxt-seo-utils',
+        'nuxt-link-checker',
+    ],
 
     i18n: {
         locales: [
@@ -20,6 +28,20 @@ export default defineNuxtConfig({
         strategy: 'prefix_except_default',
         defaultLocale: 'en',
         baseUrl: import.meta.dev ? 'http://localhost:3000' : 'https://glopcom.com',
+    },
+
+    site: {
+        url: import.meta.dev ? 'http://localhost:3000' : 'https://glopcom.com',
+        name: 'Glopcom',
+    },
+
+    schemaOrg: {
+        identity: defineOrganization({
+            name: 'Glopcom',
+            description: DESCRIPTION,
+            url: 'https://glopcom.com',
+            logo: '/logo.png',
+        }),
     },
 
     vuetify: {
@@ -53,7 +75,10 @@ export default defineNuxtConfig({
         head: {
             title: 'Glopcom',
             meta: [
-                { name: 'description', content: 'Glopcom' },
+                {
+                    name: 'description',
+                    content: DESCRIPTION,
+                },
                 { name: 'msapplication-TileColor', content: '#ffffff' },
                 { name: 'msapplication-TileImage', content: '/ms-icon-144x144.png' },
                 { name: 'theme-color', content: '#ffffff' },
