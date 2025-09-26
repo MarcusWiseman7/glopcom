@@ -2,7 +2,7 @@ import type { ContactInfo } from '~/types/contact';
 import type { Hero } from '~/types/hero';
 import type { Partner } from '~/types/partner';
 import type { Product } from '~/types/product';
-import type { SeoImage } from '~/types/sanity';
+import type { Seo, SeoImage } from '~/types/sanity';
 import type { Service } from '~/types/service';
 import type { Testimonial } from '~/types/testimonial';
 
@@ -14,6 +14,7 @@ type QueryResponse = {
     testimonial: Testimonial;
     contact: ContactInfo;
     logo: SeoImage;
+    seo: Seo;
 };
 
 const heroQuery = `*[_type == "hero"][0]`;
@@ -23,6 +24,7 @@ const productsQuery = `*[_type == "products"][0].products`;
 const testimonialQuery = `*[_type == "testimonial"][0]`;
 const contactQuery = `*[_type == "contact"][0]`;
 const logoQuery = `*[_type == "logo"][0].image`;
+const seoQuery = `*[_type == "seo"][0]`;
 const query = groq`{
     "hero": ${heroQuery}, 
     "services": ${servicesQuery},
@@ -30,11 +32,12 @@ const query = groq`{
     "products": ${productsQuery},
     "testimonial": ${testimonialQuery},
     "contact": ${contactQuery},
-    "logo": ${logoQuery}
+    "logo": ${logoQuery},
+    "seo": ${seoQuery}
 }`;
 
 export const useFetchContent = async () => {
-    const { hero, services, partners, products, testimonial, contact, logo } = storeToRefs(useContentStore());
+    const { hero, services, partners, products, testimonial, contact, logo, seo } = storeToRefs(useContentStore());
 
     if (
         hero.value &&
@@ -43,7 +46,8 @@ export const useFetchContent = async () => {
         products.value &&
         testimonial.value &&
         contact.value &&
-        logo.value
+        logo.value &&
+        seo.value
     ) {
         return;
     }
@@ -58,5 +62,6 @@ export const useFetchContent = async () => {
         testimonial.value = data.value.testimonial;
         contact.value = data.value.contact;
         logo.value = data.value.logo;
+        seo.value = data.value.seo;
     }
 };

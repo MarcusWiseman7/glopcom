@@ -17,3 +17,8 @@ export type Translation = {
         _type: string;
     }[];
 };
+
+export type Seo = {
+    title: string;
+    description: Translation;
+};

@@ -17,7 +17,19 @@
 <script setup lang="ts">
 const { heroHasImage } = storeToRefs(useContentStore());
 
-useFetchContent();
+await useFetchContent();
+
+const { seo } = storeToRefs(useContentStore());
+
+useHead({
+    title: seo.value?.title,
+    meta: [
+        {
+            name: 'description',
+            content: seo.value?.description ? useTranslation(seo.value.description) : '',
+        },
+    ],
+});
 </script>
 
 <style lang="scss" scoped>
