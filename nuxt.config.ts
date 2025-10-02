@@ -35,6 +35,10 @@ export default defineNuxtConfig({
         name: 'Glopcom',
     },
 
+    sitemap: {
+        xsl: false,
+    },
+
     schemaOrg: {
         identity: defineOrganization({
             name: 'Glopcom',
