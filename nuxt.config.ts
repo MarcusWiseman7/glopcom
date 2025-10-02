@@ -13,8 +13,6 @@ export default defineNuxtConfig({
         'vuetify-nuxt-module',
         '@pinia/nuxt',
         '@nuxtjs/sanity',
-        '@nuxtjs/sitemap',
-        '@nuxtjs/robots',
         'nuxt-schema-org',
         'nuxt-seo-utils',
         'nuxt-link-checker',
@@ -33,10 +31,6 @@ export default defineNuxtConfig({
     site: {
         url: import.meta.dev ? 'http://localhost:3000' : 'https://glopcom.com',
         name: 'Glopcom',
-    },
-
-    sitemap: {
-        xsl: false,
     },
 
     schemaOrg: {
