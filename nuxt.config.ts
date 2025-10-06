@@ -25,11 +25,11 @@ export default defineNuxtConfig({
         ],
         strategy: 'prefix_except_default',
         defaultLocale: 'en',
-        baseUrl: import.meta.dev ? 'http://localhost:3000' : 'https://www.glopcom.com',
+        baseUrl: import.meta.dev ? 'http://localhost:3000' : 'https://glopcom.com',
     },
 
     site: {
-        url: import.meta.dev ? 'http://localhost:3000' : 'https://www.glopcom.com',
+        url: import.meta.dev ? 'http://localhost:3000' : 'https://glopcom.com',
         name: 'Glopcom',
     },
 
@@ -37,7 +37,7 @@ export default defineNuxtConfig({
         identity: defineOrganization({
             name: 'Glopcom',
             description: DESCRIPTION,
-            url: 'https://www.glopcom.com',
+            url: 'https://glopcom.com',
             logo: '/logo.png',
         }),
     },

@@ -4,30 +4,30 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml"
 >
   <url>
-    <loc>https://www.glopcom.com/</loc>
+    <loc>https://glopcom.com/</loc>
     <xhtml:link
       rel="alternate"
       hreflang="en"
-      href="https://www.glopcom.com/"
+      href="https://glopcom.com/"
     />
     <xhtml:link
       rel="alternate"
       hreflang="de"
-      href="https://www.glopcom.com/de"
+      href="https://glopcom.com/de"
     />
   </url>
 
   <url>
-    <loc>https://www.glopcom.com/de</loc>
+    <loc>https://glopcom.com/de</loc>
     <xhtml:link
       rel="alternate"
       hreflang="en"
-      href="https://www.glopcom.com/"
+      href="https://glopcom.com/"
     />
     <xhtml:link
       rel="alternate"
       hreflang="de"
-      href="https://www.glopcom.com/de"
+      href="https://glopcom.com/de"
     />
   </url>
 </urlset>
